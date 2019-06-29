@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container container-pos">
+{#    <div class="content"><a href="{{ url_for('qearl.create') }}">创建</a></div>#}
+        <div class="content">
+            <div class="content-body">
+                    {% for blog in blog_list %}
+                        <a href="{{ url_for('qearl.show', blog_id=blog.id) }}">
+                            <h3>{{ blog.title }}</h3>
+                            <i>-------------------------------------{{ blog.created_at }}</i>
+                        </a>
+                    {% endfor %}
+            </div>
+        <div class="content-right">
+            <div class="blog-block">关于我</div>
+            <div class="blog-block">
+                <ul>
+                    {% for blog in blog_list[:5] %}
+                        <li>{{ blog.title }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="blog-block">标签</div>
+            <div class="blog-block">分类</div>
+            <div class="blog-block"> 归档</div>
+        </div>
+        </div>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+
+{% block title %}注册{% endblock %}
+
+{% block content %}
+
+    {% for message in get_flashed_messages() %}
+        <div class="alert alert-warning">
+            <button type="button" class="close" data-dismiss="alter">×</button>
+            {{ message }}
+        </div>
+    {% endfor %}
+
+    <form method="post">
+        <div class="form-group">
+            <label for="username">用户名</label>
+            <input type="text" class="form-control" name="username"
+                   id="username" placeholder="请输入用户名">
+        </div>
+        <div class="form-group">
+            <label for="passworld">密码</label>
+            <input type="password" class="form-control" name="password"
+                   id="passworld" placeholder="请输入密码">
+        </div>
+        <button type="submit" class="btn btn-info">注册</button>
+    </form>
+
+{% endblock %}
