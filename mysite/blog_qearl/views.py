@@ -22,8 +22,9 @@ def blog():
 
 @mod.route('/<int:blog_id>')
 def show(blog_id):
+    posts = Post.query.join(User).filter_by(username='qearl').all()
     post = Post.query.filter_by(id=blog_id).join(User).filter_by(username='qearl').first()
-    return render_template('blog/show.html', blog=post)
+    return render_template('blog/show.html', blog=post, blog_list=posts)
 
 
 @mod.route('/create', methods=["GET", "POST"])

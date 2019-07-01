@@ -2,29 +2,54 @@
 
 {% block content %}
     <div class="container container-pos">
-{#    <div class="content"><a href="{{ url_for('qearl.create') }}">创建</a></div>#}
+        {#    <div class="content"><a href="{{ url_for('qearl.create') }}">创建</a></div>#}
         <div class="content">
-            <div class="content-body">
-                    {% for blog in blog_list %}
-                        <a href="{{ url_for('qearl.show', blog_id=blog.id) }}">
-                            <h3>{{ blog.title }}</h3>
-                            <i>-------------------------------------{{ blog.created_at }}</i>
-                        </a>
-                    {% endfor %}
-            </div>
-        <div class="content-right">
-            <div class="blog-block">关于我</div>
-            <div class="blog-block">
-                <ul>
+            <div class="content-left">
+                <div class="blog-block">
+                    <h4 class="blog-block-title">关于我</h4>
+                    <p>Haha！大家好，我，就是人见人爱，花见花开的元气少女朵儿。</p>
+                </div>
+                <div class="blog-block">
+                    <h4 class="blog-block-title">近期文章</h4>
                     {% for blog in blog_list[:5] %}
-                        <li>{{ blog.title }}</li>
+                        <p>{{ blog.title }}</p>
                     {% endfor %}
-                </ul>
+                </div>
+                <div class="blog-block">
+                    <h4 class="blog-block-title">标签</h4>
+                    <p>Openstack, Python, Linux</p>
+                </div>
+                <div class="blog-block">
+                    <h4 class="blog-block-title">分类</h4>
+                    <p>Python</p>
+                    <p>数据库</p>
+                </div>
+                <div class="blog-block">
+                    <h4 class="blog-block-title">归档</h4>
+                    <p>Haha！大家好，我，就是人见人爱，花见花开的元气少女朵儿。</p>
+                </div>
             </div>
-            <div class="blog-block">标签</div>
-            <div class="blog-block">分类</div>
-            <div class="blog-block"> 归档</div>
-        </div>
+            <div class="content-body">
+                {% for blog in blog_list %}
+                    <div class="pos-block">
+                        <div class="pos-date">
+                            {{ blog.created_at }}
+                        </div>
+                        <div class="pos-title">
+                            <a href="{{ url_for('qearl.show', blog_id=blog.id) }}">{{ blog.title }}</a>
+                        </div>
+                        <div>
+                            {{ blog.body }}
+                        </div>
+
+                    </div>
+                {% endfor %}
+               {% if g.user %}
+                    <a href="{{ url_for('qearl.create') }}">添加新文章</a>
+                {% endif %}
+
+            </div>
+
         </div>
     </div>
 
