@@ -32,3 +32,41 @@ class Post(db.Model):
                            server_default=db.func.current_timestamp())
     author = db.relationship(User, lazy="joined", backref="posts")
 
+
+class Tag(db.Model):
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True,
+                       doc="标签ID")
+    tag_name = db.Column(db.String, nullable=False, doc="标签名称")
+    tag_description = db.Column(db.Text, nullable=True, doc="标签描述")
+
+
+class PostTag(db.Model):
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    tag_id = db.Column(db.ForeignKey(Tag.id), nullable=False)
+    post_id = db.Column(db.ForeignKey(Post.id), nullable=False)
+
+
+class Sort(db.Model):
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True,
+                        doc="分类ID")
+    sort_name = db.Column(db.String, nullable=False, doc="分类名称")
+    sort_description = db.Column(db.Text, nullable=True, doc="分类描述")
+    # parent_sort_id = db.Column(db.BIGINT, nullable=False)
+
+
+class PostSort(db.Model):
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    sort_id = db.Column(db.ForeignKey(Sort.id), nullable=False)
+    post_id = db.Column(db.ForeignKey(Post.id), nullable=False)
+
+
+class Comment(db.Model):
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True,
+                           doc="评论ID")
+
+    created_at = db.Column(db.DateTime, nullable=False,
+                           server_default=db.func.current_timestamp())
+    comment_user = db.Column(db.String, nullable=False)
+    comment_text = db.Column(db.Text, nullable=False)
+    post_id = db.Column(db.ForeignKey(Post.id), nullable=False)
+    post = db.relationship(Post, lazy="joined", backref="comments")

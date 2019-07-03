@@ -1,5 +1,11 @@
 {% extends 'base.html' %}
-
+{% block page_top %}
+    <div class="page_top">
+        <p>
+            &nbsp;&nbsp;&nbsp;&nbsp;Qearl's Blog
+        </p>
+    </div>
+{% endblock %}
 {% block content %}
     <div class="container container-pos">
         <div class="content">
@@ -25,15 +31,19 @@
                 </div>
                 <div class="blog-block">
                     <h4 class="blog-block-title">归档</h4>
-                    <p>Haha！大家好，我，就是人见人爱，花见花开的元气少女朵儿。</p>
+                    <p>2019年5月（3）</p>
+                    <p>2019年6月（1）</p>
                 </div>
             </div>
             <div class="content-body">
                 <h1>{{ blog.title }}</h1>
-                <p>{{ blog.author.username }}</p>
-                <p>{{ blog.created_at }}</p>
+                <hr>
+                <span>Post by {{ blog.author.username }}</span>
+                <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                <span>{{ blog.created_at }}</span>
+                <hr>
                 <p>
-                    {{ blog.body }}
+                    {{ blog.body | safe }}
                 </p>
 
             </div>

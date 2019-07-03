@@ -33,6 +33,8 @@ def create():
     if request.method == "POST":
         title = request.form.get("title")
         text = request.form.get("text")
+        tag = request.form.get("tag")
+        sort = request.form.get("sort")
         error = None
 
         if not title:

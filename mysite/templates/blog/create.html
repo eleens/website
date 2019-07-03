@@ -1,15 +1,31 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    {#      <form method="post">#}
-    {#    <label for="title">Title</label>#}
-    {#    <input name="title" id="title" value="{{ request.form['title'] }}" required>#}
-    {#    <label for="text">Body</label>#}
-    {#    <textarea name="text" id="text">{{ request.form['text'] }}</textarea>#}
-    {#    <input type="submit" value="Save">#}
-    {##}
-    {##}
-    {#  </form>#}
+    <form method="post">
+        <div class="form-group">
+            <label for="title">标题</label>
+            <input name="title" id="title" style="width:99%;" value="{{ request.form['title'] }}"
+               required>
+        </div>
+    <div class="form-group">
+
+        <label for="text">内容</label>
+        <script id="editor" name="text" type="text/plain" style="width:100%;height:500px;"></script>
+        {#<br>#}
+        </div>
+        <label for="type">分类</label>
+        <input name="type" id="type" value="{{ request.form['type'] }}"
+               required>
+        <br>
+        <label for="tag">标签</label>
+        <input name="tag" id="tag" value="{{ request.form['tag'] }}"
+               required>
+        <br>
+        <input type="submit" value="发布">
+        {#<input type="cancle" value="存为草稿">#}
+        {#<input type="cancle" value="取消">#}
+
+    </form>
     {#    <div class="content-left">#}
     {#                <div class="blog-block">#}
     {#                    <h4 class="blog-block-title">关于我</h4>#}
@@ -38,15 +54,12 @@
 
 
     {#    <div style="width:100px;height:800px; float:left;"><p>左边</p></div>#}
-    <div>
-        <button onclick="saveData()">保存</button>
-    </div>
-    <div style="width:100%;height:500px;">
-        <script id="editor" type="text/plain"></script>
-    </div>
-
-
-    {#    <div style="width:100px;height:800px; float:right;"><p>右边</p></div>#}
+{#    <div>#}
+{#        <button onclick="saveData()">保存</button>#}
+{#    </div>#}
+{#    <div style="width:100%;height:500px;">#}
+{#        <script id="editor" type="text/plain"></script>#}
+{#    </div>#}
 
 
 {% endblock %}
@@ -68,8 +81,6 @@
 
     <script type="text/javascript">
         var ue = UE.getEditor('editor');
-        UE.getEditor('editor').setContent('这是文章标题', isAppendTo);
-        {#UE.getEditor('editor').setContent('<h1>这是文章标题</>', isAppendTo);#}
 
 
         function sendData(data) {
@@ -92,7 +103,7 @@
             });
 
             // 设置请求地址和方法
-            XHR.open('POST', 'http://127.0.0.1:5000/qearl/create');
+            XHR.open('POST', '/qearl/create');
 
             // 发送这个formData对象,HTTP请求头会自动设置
             XHR.send(FD);

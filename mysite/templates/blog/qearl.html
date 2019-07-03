@@ -1,5 +1,12 @@
 {% extends 'base.html' %}
 
+{% block page_top %}
+    <div class="page_top">
+        <p>
+            &nbsp;&nbsp;&nbsp;&nbsp;Qearl's Blog
+        </p>
+    </div>
+{% endblock %}
 {% block content %}
     <div class="container container-pos">
         {#    <div class="content"><a href="{{ url_for('qearl.create') }}">创建</a></div>#}
@@ -39,7 +46,14 @@
                             <a href="{{ url_for('qearl.show', blog_id=blog.id) }}">{{ blog.title }}</a>
                         </div>
                         <div>
-                            {{ blog.body }}
+                            {% if blog.body|length  > 20 %}
+                            {{ blog.title }}
+{#                            {{ blog.body[:26] | safe }}#}
+
+                            {% else %}
+                            {{ blog.body | safe }}
+                            {% endif %}
+
                         </div>
 
                     </div>
