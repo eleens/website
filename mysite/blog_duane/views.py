@@ -8,8 +8,11 @@ Email:
 Date: 2018/10/21: 下午5:18
 """
 from mysite.blog_duane import mod
+from mysite.databases.models import Post, User
+from flask import render_template
 
 
-@mod.route('/duane')
+@mod.route('/')
 def blog():
-    pass
+    posts = Post.query.join(User).filter_by(username='duane').all()
+    return render_template('blog/qearl.html', blog_list=posts)

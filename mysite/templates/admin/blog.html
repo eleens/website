@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block page_top %}
+    <div class="page_top">
+        <p>
+            &nbsp;&nbsp;&nbsp;&nbsp;博客管理后台
+        </p>
+    </div>
+{% endblock %}
+{% block content %}
+    <div class="container container-pos">
+        <div class="content">
+            <div class="content-left">
+                <div><a href="{{ url_for("admin.blog", username=g.user.username) }}">我的博文</a></div>
+                <div><a href="#">标签管理</a></div>
+                <div><a href="#">分类管理</a></div>
+            </div>
+            <div class="content-body">
+                <div>
+                    {% if g.user %}
+                        <a href="{{ url_for('admin.create_blog') }}">添加新文章</a>
+                    {% endif %}
+                <hr>
+                </div>
+
+                {% for blog in blog_list %}
+                        <div>
+                            <a href="{{ url_for('admin.update_blog', blog_id=blog.id) }}">{{ blog.title }}</a>
+                        </div>
+                {% endfor %}
+
+
+            </div>
+
+        </div>
+    </div>
+
+{% endblock %}

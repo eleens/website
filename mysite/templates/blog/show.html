@@ -38,9 +38,17 @@
             <div class="content-body">
                 <h1>{{ blog.title }}</h1>
                 <hr>
-                <span>Post by {{ blog.author.username }}</span>
+
+                <span>作者：</span>
+                <span>{{ blog.author.username }}</span>
                 <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                <span>时间：</span>
                 <span>{{ blog.created_at }}</span>
+                <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                <span>标签：</span>
+                {% for tag in blog.post_tag %}
+                    <span>{{ tag.tags.tag_name }}</span>
+                {% endfor %}
                 <hr>
                 <p>
                     {{ blog.body | safe }}

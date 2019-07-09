@@ -43,7 +43,7 @@
                             {{ blog.created_at }}
                         </div>
                         <div class="pos-title">
-                            <a href="{{ url_for('qearl.show', blog_id=blog.id) }}">{{ blog.title }}</a>
+                            <a href="{{ url_for('blog.show', username=username, blog_id=blog.id) }}">{{ blog.title }}</a>
                         </div>
                         <div>
                             {% if blog.body|length  > 20 %}

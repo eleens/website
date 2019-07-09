@@ -44,8 +44,10 @@ def create_app(test_config=None):
     from mysite import auth
     from mysite import dashboard
     from mysite import blog_qearl
-    # from mysite import blog_duane
-    # from mysite import abouts
+    from mysite import blog_duane
+    from mysite import blog
+    from mysite import abouts
+    from mysite import admin
 
     Bootstrap(app)
     db.init_app(app)
@@ -53,9 +55,11 @@ def create_app(test_config=None):
 
     app.register_blueprint(auth.mod)
     app.register_blueprint(dashboard.mod)
-    # app.register_blueprint(blog_duane.mod)
+    app.register_blueprint(blog_duane.mod)
     app.register_blueprint(blog_qearl.mod)
-    # app.register_blueprint(abouts.mod)
+    app.register_blueprint(blog.mod)
+    app.register_blueprint(abouts.mod)
+    app.register_blueprint(admin.mod)
     app.add_url_rule('/', endpoint='index')
 
     return app

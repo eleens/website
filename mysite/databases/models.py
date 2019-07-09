@@ -44,6 +44,8 @@ class PostTag(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     tag_id = db.Column(db.ForeignKey(Tag.id), nullable=False)
     post_id = db.Column(db.ForeignKey(Post.id), nullable=False)
+    posts = db.relationship(Post, lazy="joined", backref="post_tag")
+    tags = db.relationship(Tag, lazy="joined", backref="post_tag")
 
 
 class Sort(db.Model):

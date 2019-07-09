@@ -9,6 +9,6 @@ Date: 2018/10/21: 下午5:17
 """
 from flask import Blueprint
 
-mod = Blueprint('duane', __name__, url_prefix='/duane')
+mod = Blueprint('admin', __name__, url_prefix='/admin')
 
 from . import views
