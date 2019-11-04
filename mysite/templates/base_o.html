@@ -1,0 +1,106 @@
+{% extends 'bootstrap/base.html' %}
+
+{% block html_attribs %} lang="zh-CN" {% endblock %}
+
+{% block head %}
+    {#    {% block title %}个人博客{% endblock %}#}
+    {% block metas %}
+        {{ super() }}
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    {% endblock %}
+    {% block styles %}
+        {{ super() }}
+        <link rel="stylesheet"
+              href="{{ url_for('static',filename='scss/common.css') }}">
+    {% endblock %}
+{% endblock %}
+{% block body %}
+
+    {% block navbar %}
+
+        <div class="none-padding table-bordered navbar-inverse"
+             role="navigation">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle"
+                            data-toggle="collapse"
+                            data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="/">logo</a>
+                </div>
+                <div>
+                    <ul class="nav navbar-nav">
+                        <li><a href="{{ url_for('index') }}">首页</a></li>
+                        <li><a>|</a></li>
+                        <li><a href="{{ url_for('blog.blog', username='qearl') }}">Qearl</a></li>
+                        <li><a>|</a></li>
+                        <li><a href="{{ url_for('blog.blog', username='duane') }}">Duane</a></li>
+                        <li><a>|</a></li>
+                        <li><a href="/">关于我们</a></li>
+                        {% if g.user %}
+                        <li><a>|</a></li>
+                        <li><a href="{{ url_for('admin.blog', username=g.user.username) }}">管理</a></li>
+                        {% endif %}
+                    </ul>
+                </div>
+
+
+                <div class="navbar-right">
+                    <ul class="nav navbar-nav">
+                        {% if g.user %}
+                            <li><a href="/">Hi,{{ g.user['username'] }}</a></li>
+                            <li><a href="{{ url_for('auth.logout') }}">退出</a>
+                            </li>
+                        {% else %}
+                            <li><a href={{ url_for('auth.register') }}>注册</a>
+                            </li>
+                            <li><a href="{{ url_for('auth.login') }}">登录</a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    {% endblock %}
+
+
+    {% block page_top %}
+        {#        <div class="page_top">#}
+        {#            <p>#}
+        {#                &nbsp;&nbsp;&nbsp;&nbsp;Qearl's Blog#}
+        {#            </p>#}
+        {#        </div>#}
+        {#<div class="table-bordered image-banner" >#}
+        {#    <img src="{{ url_for('static',filename='images/banner.jpg') }}" height="100%" width="100%">#}
+        {#    <div class="page_top"></div>#}
+        {#</div>#}
+
+    {% endblock %}
+
+    {% block content %}
+
+        {% block page_content %}{% endblock %}
+
+    {% endblock %}
+
+    {% block footer %}
+        <div class="footer">
+            <div class="inner footer-inner">
+                <hr/>
+                © 浙江省 ICP 备 07500799 号
+                <hr/>
+            </div>
+        </div>
+    {% endblock %}
+    {% block scripts %}
+         <script type="text/javascript"
+            src="//54d4a4629fb6b.t73.qifeiye.com/qfy-content/cache/scripts/0a16766024cfa9108dec135396932087.js">/*Cache!*/</script>
+    {% endblock %}
+
+{% endblock %}

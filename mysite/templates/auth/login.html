@@ -1,10 +1,9 @@
 {% extends 'base.html' %}
 
-
-{% block title %}登录{% endblock %}
-
-{% block content %}
-    {% for message in get_flashed_messages() %}
+{% block nav %}
+{% endblock %}
+{% block main %}
+        {% for message in get_flashed_messages() %}
         <div class="alert alert-warning">
             <button type="button" class="close" data-dismiss="alter">×</button>
             {{ message }}
@@ -41,4 +40,6 @@
             </div>
         </div>
     </form>
+{% endblock %}
+{% block footer %}
 {% endblock %}

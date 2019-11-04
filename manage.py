@@ -13,6 +13,11 @@ from mysite import create_app
 app = create_app()
 
 
+@app.template_filter("datafomat")
+def datafomat(value, format="%Y-%m"):
+    return value.strftime(format)
+
+
 if __name__ == '__main__':
 
     app.run()

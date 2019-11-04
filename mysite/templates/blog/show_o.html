@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% block page_top %}
+    <div class="page_top">
+        <p>
+            &nbsp;&nbsp;&nbsp;&nbsp;Qearl's Blog
+        </p>
+    </div>
+{% endblock %}
+{% block content %}
+    <div class="container container-pos">
+        <div class="content">
+            <div class="content-left">
+                <div class="blog-block">
+                    <h4 class="blog-block-title">关于我</h4>
+                    <p>Haha！大家好，我，就是人见人爱，花见花开的元气少女朵儿。</p>
+                </div>
+                <div class="blog-block">
+                    <h4 class="blog-block-title">近期文章</h4>
+                    {% for blog in blog_list[:5] %}
+                        <p>{{ blog.title }}</p>
+                    {% endfor %}
+                </div>
+                <div class="blog-block">
+                    <h4 class="blog-block-title">标签</h4>
+                    <p>Openstack, Python, Linux</p>
+                </div>
+                <div class="blog-block">
+                    <h4 class="blog-block-title">分类</h4>
+                    <p>Python</p>
+                    <p>数据库</p>
+                </div>
+                <div class="blog-block">
+                    <h4 class="blog-block-title">归档</h4>
+                    <p>2019年5月（3）</p>
+                    <p>2019年6月（1）</p>
+                </div>
+            </div>
+            <div class="content-body">
+                <h1>{{ blog.title }}</h1>
+                <hr>
+
+                <span>作者：</span>
+                <span>{{ blog.author.username }}</span>
+                <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                <span>时间：</span>
+                <span>{{ blog.created_at }}</span>
+                <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                <span>标签：</span>
+                {% for tag in blog.post_tag %}
+                    <span>{{ tag.tags.tag_name }}</span>
+                {% endfor %}
+                <hr>
+                <p>
+                    {{ blog.body | safe }}
+                </p>
+
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

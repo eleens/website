@@ -17,14 +17,14 @@ from mysite.auth.views import login_required
 @mod.route('/')
 def blog():
     posts = Post.query.join(User).filter_by(username='qearl').all()
-    return render_template('blog/qearl.html', blog_list=posts)
+    return render_template('blog/list.html', blog_list=posts)
 
 
-@mod.route('/<int:blog_id>')
-def show(blog_id):
-    posts = Post.query.join(User).filter_by(username='qearl').all()
-    post = Post.query.filter_by(id=blog_id).join(PostTag).first()
-    return render_template('blog/show.html', blog=post, blog_list=posts)
+# @mod.route('/<int:blog_id>')
+# def show(blog_id):
+#     posts = Post.query.join(User).filter_by(username='qearl').all()
+#     post = Post.query.filter_by(id=blog_id).join(PostTag).first()
+#     return render_template('blog/show.html', blog=post, blog_list=posts)
 
 
 

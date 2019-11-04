@@ -17,3 +17,4 @@ from datetime import datetime
 @app.template_filter()
 def format_date(date):
     return datetime.strptime(date, "%Y年%M月%D日")
+

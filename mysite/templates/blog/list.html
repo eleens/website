@@ -1,67 +1,751 @@
 {% extends 'base.html' %}
 
-{% block page_top %}
-    <div class="page_top">
-        <p>
-            &nbsp;&nbsp;&nbsp;&nbsp;Qearl's Blog
-        </p>
-    </div>
+{% block styles %}
+    {{ super() }}
+    <style class="style_0">
+        .bitRightSider .widget-title, .bitLeftSider .widget-title {
+            padding: 0 0 0 10px;
+            height: 28px;
+            line-height: 28px;
+            background-color: #024886;
+            margin: 0px;
+            font-weight: normal;
+            font-style: normal;
+            text-decoration: none;
+            color: #fff;
+            border-top: 0;
+            border-left: 0;
+            border-right: 0;
+            border-bottom: 0;
+            background-image: url(//fast.qifeiye.com/qfy-content/plugins//bit-plugin/assets/frame/header_bg/1/bg.png);
+            background-repeat: repeat;
+            -webkit-border-top-left-radius: 0;
+            -webkit-border-top-right-radius: 0;
+            -moz-border-radius-topleft: 0;
+            -moz-border-radius-topright: 0;
+            border-top-left-radius: 0;
+            border-top-right-radius: 0;
+        }
+
+        .bitRightSider .bitWidgetFrame, .bitLeftSider .bitWidgetFrame {
+            border-top: 0;
+            border-bottom: 1px solid #bababa;
+            border-left: 1px solid #bababa;
+            border-right: 1px solid #bababa;
+            padding: 4px 10px 4px 10px;
+            -webkit-border-bottom-left-radius: 0;
+            -webkit-border-bottom-right-radius: 0;
+            -moz-border-radius-bottomleft: 0;
+            -moz-border-radius-bottomright: 0;
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+
+        .bitRightSider .site_tooler, .bitLeftSider .site_tooler {
+            -webkit-box-shadow: none;
+            box-shadow: none;
+        }
+
+        .bitRightLeftSiderWidget.site_tooler .bitWidgetFrame, .bitRightLeftSiderWidget.site_tooler .bitWidgetFrame {
+            background-color: transparent;
+            background-image: none;
+            -webkit-border-bottom-left-radius: 0px;
+            border-bottom-left-radius: 0px;
+            -webkit-border-bottom-right-radius: 0px;
+            border-bottom-right-radius: 0px;
+        }</style>
+    <style class="style_0">
+        .footer .widget-title {
+            padding: 0 0 0 10px;
+            height: 28px;
+            line-height: 28px;
+            background-color: #024886;
+            margin: 0px;
+            font-weight: normal;
+            font-style: normal;
+            text-decoration: none;
+            color: #fff;
+            border-top: 0;
+            border-left: 0;
+            border-right: 0;
+            border-bottom: 0;
+            background-image: none;
+            -webkit-border-top-left-radius: 4px;
+            -webkit-border-top-right-radius: 4px;
+            -moz-border-radius-topleft: 4px;
+            -moz-border-radius-topright: 4px;
+            border-top-left-radius: 4px;
+            border-top-right-radius: 4px;
+        }
+
+        .footer .widget-title {
+            border-top: 0;
+            border-left: 0;
+            border-right: 0;
+        }
+
+        .footer .bitWidgetFrame {
+            border-bottom: 0;
+            border-top: 0;
+            border-left: 0;
+            border-right: 0;
+            padding: 4px 10px 4px 10px;
+        }
+
+        .footer .site_tooler {
+            -webkit-box-shadow: none;
+            box-shadow: none;
+        }
+
+        .footer .site_tooler .bitWidgetFrame {
+            background-color: transparent;
+            background-image: none;
+            -webkit-border-bottom-left-radius: 4px;
+            border-bottom-left-radius: 4px;
+            -webkit-border-bottom-right-radius: 4px;
+            border-bottom-right-radius: 4px;
+        }</style>
+
+    <style type="text/css">
+    </style>
 {% endblock %}
-{% block content %}
-    <div class="container container-pos">
-        {#    <div class="content"><a href="{{ url_for('qearl.create') }}">创建</a></div>#}
-        <div class="content">
-            <div class="content-left">
-                <div class="blog-block">
-                    <h4 class="blog-block-title">关于我</h4>
-                    <p>Haha！大家好，我，就是人见人爱，花见花开的元气少女朵儿。</p>
-                </div>
-                <div class="blog-block">
-                    <h4 class="blog-block-title">近期文章</h4>
-                    {% for blog in blog_list[:5] %}
-                        <p>{{ blog.title }}</p>
-                    {% endfor %}
-                </div>
-                <div class="blog-block">
-                    <h4 class="blog-block-title">标签</h4>
-                    <p>Openstack, Python, Linux</p>
-                </div>
-                <div class="blog-block">
-                    <h4 class="blog-block-title">分类</h4>
-                    <p>Python</p>
-                    <p>数据库</p>
-                </div>
-                <div class="blog-block">
-                    <h4 class="blog-block-title">归档</h4>
-                    <p>Haha！大家好，我，就是人见人爱，花见花开的元气少女朵儿。</p>
-                </div>
-            </div>
-            <div class="content-body">
-                {% for blog in blog_list %}
-                    <div class="pos-block">
-                        <div class="pos-date">
-                            {{ blog.created_at }}
-                        </div>
-                        <div class="pos-title">
-                            <a href="{{ url_for('blog.show', username=username, blog_id=blog.id) }}">{{ blog.title }}</a>
-                        </div>
-                        <div>
-                            {% if blog.body|length  > 20 %}
-                            {{ blog.title }}
-{#                            {{ blog.body[:26] | safe }}#}
 
-                            {% else %}
-                            {{ blog.body | safe }}
-                            {% endif %}
+{% block script %}
+    <script type="text/javascript">
+        /* <![CDATA[ */
+        /* dt-plugins */
+        var dtLocal = {
+            "passText": "\u67e5\u770b\u8fd9\u4e2a\u52a0\u5bc6\u8d44\u8baf\uff0c\u8bf7\u5728\u4e0b\u9762\u8f93\u5165\u5bc6\u7801\uff1a",
+            "moreButtonAllLoadedText": "\u5168\u90e8\u5df2\u52a0\u8f7d",
+            "postID": "10102",
+            "ajaxurl": "https:\/\/54d4a4629fb6b.t73.qifeiye.com\/admin\/admin-ajax.php",
+            "contactNonce": "68dafa785e",
+            "ajaxNonce": "dc9849d5a7",
+            "pageData": {
+                "type": "page",
+                "template": "page",
+                "layout": null
+            },
+            "themeSettings": {"smoothScroll": "on"}
+        };
+        /* thickbox */
+        var thickboxL10n = {
+            "next": "\u4e0b\u4e00\u5f20 >",
+            "prev": "< \u4e0a\u4e00\u5f20",
+            "image": "\u56fe\u7247",
+            "of": "\/",
+            "close": "\u5173\u95ed",
+            "noiframes": "This feature requires inline frames. You have iframes disabled or your browser does not support them.",
+            "loadingAnimation": "\/\/fast.qifeiye.com\/FeiEditor\/bitSite\/images\/preloader.gif"
+        };
 
-                        </div>
+        /* ]]> */
+    </script>
+    <script type="text/javascript"
+            src="//54d4a4629fb6b.t73.qifeiye.com/qfy-content/cache/scripts/0a16766024cfa9108dec135396932087.js">/*Cache!*/</script>
 
+    <script type="text/javascript">
+        dtGlobals.logoEnabled = 1;
+        dtGlobals.curr_id = '10102';
+        dtGlobals.logoURL = '';
+        dtGlobals.logoW = '0';
+        dtGlobals.logoH = '0';
+        dtGlobals.qfyname = '起飞页';
+        dtGlobals.id = '54d4a4629fb6b';
+        dtGlobals.language = '';
+        smartMenu = 0;
+        document.cookie = 'resolution=' + Math.max(screen.width, screen.height) + '; path=/';
+        dtGlobals.gallery_bgcolor = 'rgba(51,51,51,1)';
+        dtGlobals.gallery_showthumbs = '0';
+        dtGlobals.gallery_style = '';
+        dtGlobals.gallery_autoplay = '0';
+        dtGlobals.gallery_playspeed = '3';
+        dtGlobals.gallery_imagesize = '100';
+        dtGlobals.gallery_imageheight = '100';
+        dtGlobals.gallery_stopbutton = '';
+        dtGlobals.gallery_thumbsposition = '';
+        dtGlobals.gallery_tcolor = '#fff';
+        dtGlobals.gallery_tsize = '16';
+        dtGlobals.gallery_dcolor = '#fff';
+        dtGlobals.gallery_dsize = '14';
+        dtGlobals.gallery_tfamily = '';
+        dtGlobals.gallery_dfamily = '';
+        dtGlobals.gallery_blankclose = '0';
+        dtGlobals.gallery_arrowstyle = '0';
+        dtGlobals.fm_showstyle = '';
+        dtGlobals.fm_showspeed = '';
+        dtGlobals.cdn_url = 'https://ccdn.goodq.top';
+        dtGlobals.qfymodel = "";
+        var socail_back_url = '';
+
+    </script>
+    <script>
+        var Random = function (min, max) {
+            return Math.round(Math.random() * (max - min)) + min;
+        }
+        //apm normal access
+        if (Random(1, 20) == 1) {
+            !(function (c, b, d, a) {
+                c[a] || (c[a] = {});
+                c[a].config = {
+                    pid: "c9ihesw3jb@ccca834f41b7459",
+                    appType: "web",
+                    imgUrl: "https://arms-retcode.aliyuncs.com/r.png?"
+                };
+                with (b) with (body) with (insertBefore(createElement("script"), firstChild)) setAttribute("crossorigin", "", src = d)
+            })(window, document, "https://retcode.alicdn.com/retcode/bl.js", "__bl");
+        }
+    </script>
+{% endblock %}
+
+
+{% block main %}
+    <div id="main" class="bit_main_content">
+        <div class="main-gradient"></div>
+        <div class="wf-wrap">
+            <div class="wf-container-main">
+
+
+                <div id="content" class="content" role="main">
+
+
+                    <div class="main-outer-wrapper ">
+                        <div class="bit_row">
+
+                            <div class="twelve columns no-sidebar-content ">
+
+                                <div class="bit_row">
+
+                                    <div class="content-wrapper twelve columns ">
+
+                                        <section data-fixheight=""
+                                                 class="qfy-row-8-5dba75a1dea64445287 section     no  section-text-no-shadow section-inner-no-shadow section-normal section-orgi"
+                                                 id="bit_mtu2d"
+                                                 style="margin-bottom:0;border-radius:0px;color:#808080;">
+                                            <style class="row_class qfy_style_class">
+                                                @media only screen and (min-width: 992px) {
+                                                    section.section.qfy-row-8-5dba75a1dea64445287 {
+                                                        padding-left: 0;
+                                                        padding-right: 0;
+                                                        padding-top: 10vh;
+                                                        padding-bottom: 10vh;
+                                                        margin-top: 0;
+                                                    }
+
+                                                    section.section.qfy-row-8-5dba75a1dea64445287 > .container {
+                                                        max-width: 1280px;
+                                                        margin: 0 auto;
+                                                    }
+                                                }
+
+                                                @media only screen and (max-width: 992px) {
+                                                    .bit-html section.section.qfy-row-8-5dba75a1dea64445287 {
+                                                        padding-left: 15px;
+                                                        padding-right: 15px;
+                                                        padding-top: 20px;
+                                                        padding-bottom: 20px;
+                                                        margin-top: 0;
+                                                        min-height: 0;
+                                                    }
+                                                }
+                                            </style>
+                                            <div data-time="3"
+                                                 data-imagebgs=""
+                                                 class="background-media   "
+                                                 backgroundsize="true"
+                                                 style="background-image: url('https://ccdn.goodq.top/caches/569b046fc16663a994ea33d5a2a60b54/aHR0cHM6Ly81NGQ0YTQ2MjlmYjZiLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTcvMDYvODFjODlkMjIzZDA3MTRjOGIzNDUzZGM2YTgwOGRlNTYuanBn.jpg'); background-repeat:no-repeat; background-size:cover; background-attachment:scroll; background-position:center center;">
+                                            </div>
+
+                                            <div class="section-background-overlay background-overlay grid-overlay-0 "
+                                                 style="background-color: rgba(255,255,255,0.9);"></div>
+
+                                            <div class="container">
+                                                <div class="row qfe_row">
+                                                    <div data-animaleinbegin="bottom-in-view"
+                                                         data-animalename="qfyfadeInUp"
+                                                         data-duration="1"
+                                                         data-delay=""
+                                                         class="qfyanimate qfy-column-12-5dba75a1df03d443884 qfy-column-inner  vc_span12  text-Default small-screen-Default fullrow qfyanimated"
+                                                         data-dw="1/1"
+                                                         data-fixheight="">
+                                                        <div style="margin-top:0;margin-bottom:0;margin-left:0;margin-right:0;border-radius:0px;;position:relative;"
+                                                             class="column_inner ">
+                                                            <div class=" background-overlay grid-overlay-0"
+                                                                 style="background-color:transparent;width:100%;"></div>
+                                                            <div class="column_containter"
+                                                                 style="z-index:3;position:relative;">
+                                                                <div id="vc_header_5dba75a1df4f4754"
+                                                                     m-padding="0px 0px 0px 0px"
+                                                                     p-padding="0 0 0 0"
+                                                                     css_animation_delay="0"
+                                                                     qfyuuid="qfy_header_md4oq-c-7x"
+                                                                     data-anitime="0.7"
+                                                                     data-ani_iteration_count="1"
+                                                                     class="qfy-element minheigh1px qfe_text_column qfe_content_element "
+                                                                     style="position: relative;;;background-repeat: no-repeat;;margin-top:0;margin-bottom:0;padding-top:0;padding-bottom:0;padding-right:0;padding-left:0;">
+                                                                    <style>@media only screen and (max-width: 768px) {
+                                                                        #vc_header_5dba75a1df4f4754 .header_title {
+                                                                            font-size: 30px !important;
+                                                                        }
+                                                                    }
+
+                                                                    @media only screen and (max-width: 768px) {
+                                                                        #vc_header_5dba75a1df4f4754 .header_subtitle {
+                                                                            font-size: 12px !important;
+                                                                        }
+                                                                    }</style>
+
+                                                                    <div m-padding="0px 0px 0px 0px"
+                                                                         p-padding="0 0 0 0"
+                                                                         css_animation_delay="0"
+                                                                         qfyuuid="qfy_column_text_nxx7x"
+                                                                         data-anitime="0.7"
+                                                                         data-ani_iteration_count="1"
+                                                                         class="qfy-element qfy-text qfy-text-44469 qfe_text_column qfe_content_element  mobile_fontsize13 "
+                                                                         style="position: relative;;;line-height:1.5em;;background-position:left top;background-repeat: no-repeat;;margin-top:0;margin-bottom:50px;padding-top:0;padding-bottom:0;padding-right:0;padding-left:0;border-radius:0px;">
+                                                                        <div class="qfe_wrapper">
+                                                                            <div style="position: relative;">
+                                                                                <div style="text-align: center;">
+                                                                                <span style="font-size:14px;"><span
+                                                                                        style="color: rgb(102, 102, 102);">&nbsp;Qearl，小名余小鱼，一颗感性的心和一张理性的脸，主张独立自主，自己的锅自己接，自己埋的坑自己填。
+                                                                                    人生信条：只要活着，没有什么是解决不了的。</span><span
+                                                                                        style="font-family: comic sans ms,cursive;"></span></span>
+                                                                                </div>
+                                                                            </div>
+
+                                                                        </div>
+                                                                    </div>
+                                                                    <div data-loading=""
+                                                                         data-loading-w=""
+                                                                         data-open=""
+                                                                         data-post="post"
+                                                                         data-cate="40"
+                                                                         m-padding="0px 0px 0px 0px"
+                                                                         p-padding="0 0 0 0"
+                                                                         css_animation_delay="0"
+                                                                         qfyuuid="advanced_list_yvg4w"
+                                                                         class="qfy-element advanced-list-5dba75a1e0538792 qfe_teaser_grid qfe_content_element  qfe_grid columns_count_2 columns_count_2 qfe_teaser_grid_post  advanced_list "
+                                                                         style="margin-top:0;margin-bottom:0;padding-top:0;padding-bottom:0;padding-right:0;padding-left:0;">
+                                                                        <style>
+                                                                            .advanced-list-5dba75a1e0538792 .item_block:hover .item_wrapper .title {
+                                                                                color: #ffffff !important;
+                                                                            }
+
+                                                                            .advanced-list-5dba75a1e0538792 .item_block:hover .item_wrapper .subtitle {
+                                                                                color: #848484 !important;
+                                                                            }
+
+                                                                            .advanced-list-5dba75a1e0538792 .item_block:hover .item_wrapper .year {
+                                                                                color: #bdbdbd !important;
+                                                                            }
+
+                                                                            .advanced-list-5dba75a1e0538792 .item_block:hover .item_wrapper .md {
+                                                                                color: #bdbdbd !important;
+                                                                            }
+
+                                                                            .advanced-list-5dba75a1e0538792 .item_block:hover .item_wrapper .cate span {
+                                                                                color: #ffffff !important;
+                                                                            }
+
+                                                                            .advanced-list-5dba75a1e0538792 .item_block:hover .item_wrapper .description {
+                                                                                color: #cccccc !important;
+                                                                            }
+
+                                                                            .advanced-list-5dba75a1e0538792 .item_block:hover .price_warp .amount, .advanced-list-5dba75a1e0538792 .item_block:hover .price_warp del {
+                                                                                color: #cccccc !important;
+                                                                            }
+
+                                                                            .advanced-list-5dba75a1e0538792 .item_block:hover .price_warp ins .amount {
+                                                                                color: #cccccc !important;
+                                                                            }
+
+                                                                            .advanced-list-5dba75a1e0538792 .item_block .price_warp .amount, .advanced-list-5dba75a1e0538792 .item_block .price_warp del {
+                                                                                color: #cccccc;
+                                                                                font-size: 12px;
+                                                                            }
+
+                                                                            .advanced-list-5dba75a1e0538792 .item_block .price_warp ins .amount {
+                                                                                color: #cccccc;
+                                                                                font-size: 12px;
+                                                                            }
+
+                                                                            .advanced-list-5dba75a1e0538792 .item_block .price_warp {
+                                                                                padding-top: 0px;
+                                                                                padding-bottom: 0px;
+                                                                                padding-left: 0px;
+                                                                                padding-right: 0px;
+                                                                            }
+
+                                                                            .advanced-list-5dba75a1e0538792 .item_block .item_wrapper {
+                                                                                background: rgba(255, 255, 255, 1);
+                                                                            }
+
+                                                                            .advanced-list-5dba75a1e0538792 .item_block:hover .item_wrapper {
+                                                                                background: rgba(117, 117, 117, 1);
+                                                                            }
+
+                                                                            .advanced-list-5dba75a1e0538792 .item_block:hover .item_img img {
+                                                                                transform: none;
+                                                                            }
+
+                                                                            .advanced-list-5dba75a1e0538792 .vc-carousel .vc-left {
+                                                                                background-color: #cccccc;
+                                                                            }
+
+                                                                            .advanced-list-5dba75a1e0538792 .vc-carousel .vc-right {
+                                                                                background-color: #cccccc;
+                                                                            }
+
+                                                                            .advanced-list-5dba75a1e0538792 .vc-carousel .vc-left:hover {
+                                                                                background-color: #cccccc;
+                                                                            }
+
+                                                                            .advanced-list-5dba75a1e0538792 .vc-carousel .vc-right:hover {
+                                                                                background-color: #cccccc;
+                                                                            }
+
+                                                                            .advanced-list-5dba75a1e0538792 .vc-carousel .vc-left:before {
+                                                                                color: #ffffff;
+                                                                            }
+
+                                                                            .advanced-list-5dba75a1e0538792 .vc-carousel .vc-right:before {
+                                                                                color: #ffffff;
+                                                                            }
+
+                                                                            .advanced-list-5dba75a1e0538792 .vc-carousel .vc-left:hover:before {
+                                                                                color: #ffffff;
+                                                                            }
+
+                                                                            .advanced-list-5dba75a1e0538792 .vc-carousel .vc-right:hover:before {
+                                                                                color: #ffffff;
+                                                                            }
+
+                                                                            .advanced-list-5dba75a1e0538792 .vc-carousel .vc-left {
+                                                                                opacity: 0.7;
+                                                                            }
+
+                                                                            .advanced-list-5dba75a1e0538792 .vc-carousel .vc-right {
+                                                                                opacity: 0.7;
+                                                                            }
+
+                                                                            .advanced-list-5dba75a1e0538792 .vc-carousel .vc-left:hover {
+                                                                                opacity: 1;
+                                                                            }
+
+                                                                            .advanced-list-5dba75a1e0538792 .vc-carousel .vc-right:hover {
+                                                                                opacity: 1;
+                                                                            }
+
+                                                                            .advanced-list-5dba75a1e0538792 .vc-carousel .vc-left:hover {
+                                                                                border-color: #cccccc;
+                                                                            }
+
+                                                                            .advanced-list-5dba75a1e0538792 .vc-carousel .vc-right:hover {
+                                                                                border-color: #cccccc;
+                                                                            }
+
+                                                                            .advanced-list-5dba75a1e0538792 .list-style7 .item_block .item_info {
+                                                                                height: 120px;
+                                                                            }
+
+                                                                            .advanced-list-5dba75a1e0538792 .list-style7 .text_wrap {
+                                                                                height: 120px;
+                                                                            }
+
+                                                                            .advanced-list-5dba75a1e0538792 .list-style7 .item_block:hover::before {
+                                                                                background-color: #757575;
+                                                                            }
+
+                                                                            .advanced-list-5dba75a1e0538792 .list-style7 .item_block:hover {
+                                                                                border-color: #cfcfcf;
+                                                                            }
+
+                                                                            .advanced-list-5dba75a1e0538792 .list-style7 .item_block .date_wrap {
+                                                                                margin-top: 20px;
+                                                                            }
+
+                                                                            .advanced-list-5dba75a1e0538792 .list-style7 .more::after, .advanced-list-5dba75a1e0538792 .list-style7 .more::before, .advanced-list-5dba75a1e0538792 .list-style7 .vc-carousel-slideline-inner:before {
+                                                                                background-color: #cfcfcf;
+                                                                            }
+
+                                                                            .advanced-list-5dba75a1e0538792 .list-style7 .item_block::after {
+                                                                                border-color: #cfcfcf;
+                                                                            }
+
+                                                                            .advanced-list-5dba75a1e0538792 .list-style7 .more {
+                                                                                border-color: #cfcfcf;
+                                                                            }
+
+                                                                            .advanced-list-5dba75a1e0538792 .list-style7 .notmore.more {
+                                                                                background-color: #cfcfcf !important;
+                                                                            }
+
+                                                                            .advanced-list-5dba75a1e0538792 .list-style7 .item_block::after, .advanced-list-5dba75a1e0538792 .list-style7 .more {
+                                                                                background-color: #fff;
+                                                                            }
+
+                                                                            .advanced-list-5dba75a1e0538792 .list-style7 .item_block:hover::after, .advanced-list-5dba75a1e0538792 .list-style7 .more:hover {
+                                                                                background-color: #fff;
+                                                                            }
+
+                                                                            .advanced-list-5dba75a1e0538792 .list-style7 .item_block:hover::after {
+                                                                                border-color: #757575;
+                                                                            }
+
+                                                                            @media only screen and (max-width: 992px) {
+                                                                                .advanced-list-5dba75a1e0538792 .item_block {
+                                                                                    padding: 0px !important;
+                                                                                    position: relative !important;
+                                                                                }
+
+                                                                                .advanced-list-5dba75a1e0538792 .item_block .item_wrapper {
+                                                                                    position: relative !important;
+                                                                                    top: 0 !important;
+                                                                                }
+
+                                                                                .advanced-list-5dba75a1e0538792 .item_block .item_mask {
+                                                                                    display: none !important;
+                                                                                }
+
+                                                                                .advanced-list-5dba75a1e0538792 .item_block .item_wrapper {
+                                                                                    background: rgba(117, 117, 117, 1) !important;
+                                                                                }
+
+                                                                                .advanced-list-5dba75a1e0538792 .item_block:hover .item_wrapper .title {
+                                                                                    color: #444444 !important;
+                                                                                }
+
+                                                                                .advanced-list-5dba75a1e0538792 .item_block:hover .item_wrapper .subtitle {
+                                                                                    color: #848484 !important;
+                                                                                }
+
+                                                                                .advanced-list-5dba75a1e0538792 .item_block:hover .item_wrapper .year {
+                                                                                    color: #bdbdbd !important;
+                                                                                }
+
+                                                                                .advanced-list-5dba75a1e0538792 .item_block:hover .item_wrapper .md {
+                                                                                    color: #bdbdbd !important;
+                                                                                }
+
+                                                                                .advanced-list-5dba75a1e0538792 .item_block:hover .item_wrapper .cate span {
+                                                                                    color: #848484 !important;
+                                                                                }
+
+                                                                                .advanced-list-5dba75a1e0538792 .item_block:hover .item_wrapper .description {
+                                                                                    color: #999999 !important;
+                                                                                }
+
+                                                                                .advanced-list-5dba75a1e0538792 .item_block:hover .price_warp .amount, .advanced-list-5dba75a1e0538792 .item_block .price_warp del {
+                                                                                    color: #cccccc !important;
+                                                                                }
+
+                                                                                .advanced-list-5dba75a1e0538792 .item_block:hover .price_warp ins .amount {
+                                                                                    color: #cccccc !important;
+                                                                                }
+
+                                                                                .advanced-list-5dba75a1e0538792 .item_block .item_wrapper .item_info .subtitle, .advanced-list-5dba75a1e0538792 .item_block .item_wrapper .item_info .date_wrap, .advanced-list-5dba75a1e0538792 .item_block .item_wrapper .item_info .cate, .advanced-list-5dba75a1e0538792 .item_block .item_wrapper .item_info .item_des {
+                                                                                    opacity: 1 !important;
+                                                                                }
+
+                                                                                .advanced-list-5dba75a1e0538792 .item_block .item_wrapper {
+                                                                                    background: none !important;
+                                                                                }
+                                                                            }</style>
+                                                                        <div class="qfe_wrapper list-style7">
+                                                                            <div style=";clear:both;"
+                                                                                 data-type="post"
+                                                                                 data-cate="40"
+                                                                                 data-pcate="">
+                                                                                <div id="advanced-carousel-5dba75a1e04f8211"
+                                                                                     data-wrap="true"
+                                                                                     data-viewnum="1"
+                                                                                     data-interval="0"
+                                                                                     data-auto-height="true"
+                                                                                     data-mode="horizontal"
+                                                                                     data-partial="false"
+                                                                                     data-per-view="1"
+                                                                                     data-hide-on-end="true"
+                                                                                     class=" itempcbody  normal-list"
+                                                                                     style="">
+                                                                                    <!-- Indicators -->
+                                                                                    <section
+                                                                                            class="vc-carousel-inner ">
+                                                                                        <div class="vc-carousel-slideline">
+                                                                                            <div class="vc-carousel-slideline-inner">
+                                                                                                {% for blog in blog_list %}
+                                                                                                    <div class="item_container list-item vc_span12  num-0"
+                                                                                                         style="float:left;margin-bottom:0px;padding:5px;">
+                                                                                                        <div class="vc_ca_post_id qfy_item_post qfyanimated  "
+                                                                                                             data-postid="9869"
+                                                                                                             data-animaleinbegin="bottom-in-view"
+                                                                                                             data-animalename="qfyfadeInUp"
+                                                                                                             data-delay="0"
+                                                                                                             data-duration=""
+                                                                                                             style="">
+                                                                                                            <div id="item_block"
+                                                                                                                 class="qfy_item_block item_block "
+                                                                                                                 style=" position: relative;">
+                                                                                                                <div class="item_box ">
+                                                                                                                    <a class="item_a_link"
+                                                                                                                       href="{{ url_for('blog.show', username=blog.author.username, blog_id=blog.id) }}"
+                                                                                                                       title={{ blog.title }}
+                                                                                                                               target="_self">
+                                                                                                                        <div class="item_img"
+                                                                                                                             target="_blank">
+                                                                                                                            <img data-t-id="9871"
+                                                                                                                                 style=""
+                                                                                                                                 class=" ag_image"
+                                                                                                                                 src="https://ccdn.goodq.top/caches/569b046fc16663a994ea33d5a2a60b54/aHR0cHM6Ly81NGQ0YTQ2MjlmYjZiLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTcvMDYvMDA3OTk1MmFlODkwYzM4MzMyNWVlMDMyMTRhZTcxNzctNjAweDMwMC5qcGc_p_p100_p_3D.jpg"
+                                                                                                                                 alt="54"
+                                                                                                                                 description=""
+                                                                                                                                 data-attach-id="9871"
+                                                                                                                                 data-title="54"
+                                                                                                                                 title=""
+                                                                                                                                 src-img="">
+                                                                                                                            <div class="item_mask"></div>
+                                                                                                                        </div>
+                                                                                                                    </a>
+                                                                                                                    <div class="item_wrapper clearfix">
+                                                                                                                        <div class="item_info clearfix">
+                                                                                                                            <div class="text_wrap">
+                                                                                                                                <a class="item_a_link"
+                                                                                                                                   href="{{ url_for('blog.show', username=blog.author.username, blog_id=blog.id) }}"
+                                                                                                                                   title={{ blog.title }}
+                                                                                                                                           target="_self">
+                                                                                                                                    <div class="title ellipsis"
+                                                                                                                                         data-title="true"
+                                                                                                                                         style="color:#444444;font-size:14px;font-family:微软雅黑;font-weight:normal;">
+                                                                                                                                        {{ blog.title }}
+                                                                                                                                    </div>
+                                                                                                                                </a>
+
+
+                                                                                                                                <div class="item_des show"
+                                                                                                                                     style="max-width:px;">
+                                                                                                                                    <div class="description post_excerpt"
+                                                                                                                                         style="color:#999999;font-size:13px;max-width:px;word-break:break-all;font-family:微软雅黑;line-height:24px;">
+                                                                                                                                        <p>{{ blog.body | safe }}</p>
+                                                                                                                                    </div>
+                                                                                                                                </div>
+                                                                                                                                <div class="price_warp ellipsis hide">
+                                                                                                                                </div>
+                                                                                                                            </div>
+
+                                                                                                                        </div>
+
+                                                                                                                        <div class="date_wrap show"
+                                                                                                                             style="">
+                                                                                                                    <span class="md "
+                                                                                                                          style="color:#bdbdbd;font-size:36px;font-family:微软雅黑;;">{{ blog.created_at | datafomat("%m-%d") }}</span>
+                                                                                                                            <span class="year post_date"
+                                                                                                                                  style="color:#bdbdbd;font-size:12px;font-family:微软雅黑;;">{{ blog.created_at | datafomat("%Y") }}</span>
+                                                                                                                        </div>
+
+
+                                                                                                                    </div>
+                                                                                                                </div>
+                                                                                                                <a href="{{ url_for('blog.show', username=blog.author.username, blog_id=blog.id) }}"
+                                                                                                                   title={{ blog.title }}
+                                                                                                                           target="_self"
+                                                                                                                   class="details item_link"
+                                                                                                                   style="color:#848484;font-size:12px;">MORE123<i
+                                                                                                                        class="fa fa-angle-right"
+                                                                                                                        aria-hidden="true"></i></a>
+
+                                                                                                            </div>
+
+                                                                                                        </div>
+
+                                                                                                    </div>
+
+                                                                                                    <p class="wf-mobile-hidden"
+                                                                                                       style="clear:both;padding:0;"></p>
+
+                                                                                                {% endfor %}
+
+                                                                                            </div>
+
+                                                                                        </div>
+                                                                                    </section>
+
+
+                                                                                </div>
+
+                                                                                <a onclick="nav_pagemore(this)"
+                                                                                   data-url="https://54d4a4629fb6b.t73.qifeiye.com/?paged=2&amp;qfyuuid=advanced_list_yvg4w"
+                                                                                   data-loadtext=""
+                                                                                   class="more mypages pagenav  qfyanimate notmore"
+                                                                                   data-animalename="qfyfadeInUp"
+                                                                                   data-delay="0.3"></a>
+                                                                            </div>
+
+
+                                                                        </div>
+                                                                        <div class="clear"></div>
+
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <style class="column_class qfy_style_class">
+                                                            @media only screen and (min-width: 992px) {
+                                                                .qfy-column-12-5dba75a1df03d443884 > .column_inner {
+                                                                    padding-left: 0;
+                                                                    padding-right: 0;
+                                                                    padding-top: 0;
+                                                                    padding-bottom: 0;
+                                                                }
+
+                                                                .qfe_row .vc_span_class.qfy-column-12-5dba75a1df03d443884 {
+                                                                }
+                                                            }
+
+                                                            @media only screen and (max-width: 992px) {
+                                                                .qfy-column-12-5dba75a1df03d443884 > .column_inner {
+                                                                    margin: 0 auto 0 !important;
+                                                                    min-height: 0 !important;
+                                                                    padding-left: 0;
+                                                                    padding-right: 0;
+                                                                    padding-top: 0;
+                                                                    padding-bottom: 0;
+                                                                }
+
+                                                                .display_entire .qfe_row .vc_span_class.qfy-column-12-5dba75a1df03d443884 {
+                                                                }
+
+                                                                .qfy-column-12-5dba75a1df03d443884 > .column_inner > .background-overlay, .qfy-column-12-5dba75a1df03d443884 > .column_inner > .background-media {
+                                                                    width: 100% !important;
+                                                                    left: 0 !important;
+                                                                    right: auto !important;
+                                                                }
+                                                            }</style>
+                                                    </div>
+                                                </div>
+
+                                        </section>
+
+
+                                    </div>
+
+
+                                    <div class="clear"></div>
+                                </div>
+                            </div>
+                        </div><!-- END .page-wrapper -->
+                        <div class="clear"></div>
                     </div>
-                {% endfor %}
+                    <div class="clear"></div>
 
-            </div>
 
-        </div>
-    </div>
+                </div>
 
+            </div><!-- .wf-container -->
+        </div><!-- .wf-wrap -->
+    </div><!-- #main -->
 {% endblock %}
+
+
+
+
