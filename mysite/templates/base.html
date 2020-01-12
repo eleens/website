@@ -5,7 +5,7 @@
     csstransitions no-touch"
     dir="ltr" {% endblock %}
 {% block head %}
-    {% block title %}个人博客{% endblock %}
+{#    {% block title %}个人博客{% endblock %}#}
     {% block metas %}
         {{ super() }}
         <meta name="renderer" content="webkit">
@@ -27,9 +27,12 @@
         {{ super() }}
         <link rel="stylesheet"
               href="{{ url_for('static',filename='scss/base.css') }}">
+        <link rel="stylesheet"
+              href="{{ url_for('static',filename='scss/common.css') }}">
         <link rel="profile" href="http://gmpg.org/xfn/11">
     {% endblock %}
     {% block script %}
+
     {% endblock %}
 {% endblock %}
 

@@ -1,73 +1,78 @@
 {% extends 'base.html' %}
 
-{% block content %}
-    <form method="post">
-        <div class="form-group">
+{% block main %}
+    {% block content %}
+        <form method="post">
+        <div class="form-group form_fomat">
             <label for="title">标题</label>
-            <input name="title" id="title" style="width:99%;" value="{{ request.form['title'] }}"
-               required>
+            <input name="title" id="title" style="width:80%; height: 40px;"
+                   value="{{ request.form['title'] }}"
+                   required>
         </div>
-    <div class="form-group">
+        <div class="form-group form_fomat">
 
-        <label for="text">内容</label>
-        <script id="editor" name="text" type="text/plain" style="width:100%;height:500px;"></script>
+        {#        <label for="text">内容</label>#}
+        <script id="editor" name="text" type="text/plain"
+                style="width:100%;height:500px;"></script>
         {#<br>#}
         </div>
-        <label for="type">分类</label>
-        <input name="type" id="type" value="{{ request.form['type'] }}"
-               required>
-        <br>
-        <label for="tag">标签</label>
-        <input name="tag" id="tag" value="{{ request.form['tag'] }}"
-               required>
-        <br>
-        <input type="submit" value="发布">
+        <div class="form-group form_fomat" >
+        <label for="type" > 分类 </label>
+        <input name = "type" id = "type" value = "{{ request.form['type'] }}"
+        required >
+        <br >
+        <label for= "tag" > 标签 </label>
+        <input name = "tag" id = "tag" value = "{{ request.form['tag'] }}"
+        required >
+        <br >
+        <input type = "submit" value="发布">
         {#<input type="cancle" value="存为草稿">#}
         {#<input type="cancle" value="取消">#}
+        </div>
 
-    </form>
-    {#    <div class="content-left">#}
-    {#                <div class="blog-block">#}
-    {#                    <h4 class="blog-block-title">关于我</h4>#}
-    {#                    <p>Haha！大家好，我，就是人见人爱，花见花开的元气少女朵儿。</p>#}
-    {#                </div>#}
-    {#                <div class="blog-block">#}
-    {#                    <h4 class="blog-block-title">近期文章</h4>#}
-    {#                    {% for blog in blog_list[:5] %}#}
-    {#                        <p>{{ blog.title }}</p>#}
-    {#                    {% endfor %}#}
-    {#                </div>#}
-    {#                <div class="blog-block">#}
-    {#                    <h4 class="blog-block-title">标签</h4>#}
-    {#                    <p>Openstack, Python, Linux</p>#}
-    {#                </div>#}
-    {#                <div class="blog-block">#}
-    {#                    <h4 class="blog-block-title">分类</h4>#}
-    {#                    <p>Python</p>#}
-    {#                    <p>数据库</p>#}
-    {#                </div>#}
-    {#                <div class="blog-block">#}
-    {#                    <h4 class="blog-block-title">归档</h4>#}
-    {#                    <p>Haha！大家好，我，就是人见人爱，花见花开的元气少女朵儿。</p>#}
-    {#                </div>#}
-    {#            </div>#}
-
-
-    {#    <div style="width:100px;height:800px; float:left;"><p>左边</p></div>#}
-{#    <div>#}
-{#        <button onclick="saveData()">保存</button>#}
-{#    </div>#}
-{#    <div style="width:100%;height:500px;">#}
-{#        <script id="editor" type="text/plain"></script>#}
-{#    </div>#}
+        </form>
+        {#    <div class="content-left">#}
+        {#                <div class="blog-block">#}
+        {#                    <h4 class="blog-block-title">关于我</h4>#}
+        {#                    <p>Haha！大家好，我，就是人见人爱，花见花开的元气少女朵儿。</p>#}
+        {#                </div>#}
+        {#                <div class="blog-block">#}
+        {#                    <h4 class="blog-block-title">近期文章</h4>#}
+        {#                    {% for blog in blog_list[:5] %}#}
+        {#                        <p>{{ blog.title }}</p>#}
+        {#                    {% endfor %}#}
+        {#                </div>#}
+        {#                <div class="blog-block">#}
+        {#                    <h4 class="blog-block-title">标签</h4>#}
+        {#                    <p>Openstack, Python, Linux</p>#}
+        {#                </div>#}
+        {#                <div class="blog-block">#}
+        {#                    <h4 class="blog-block-title">分类</h4>#}
+        {#                    <p>Python</p>#}
+        {#                    <p>数据库</p>#}
+        {#                </div>#}
+        {#                <div class="blog-block">#}
+        {#                    <h4 class="blog-block-title">归档</h4>#}
+        {#                    <p>Haha！大家好，我，就是人见人爱，花见花开的元气少女朵儿。</p>#}
+        {#                </div>#}
+        {#            </div>#}
 
 
-{% endblock %}
+        {#    <div style="width:100px;height:800px; float:left;"><p>左边</p></div>#}
+        {#    <div>#}
+        {#        <button onclick="saveData()">保存</button>#}
+        {#    </div>#}
+        {#    <div style="width:100%;height:500px;">#}
+        {#        <script id="editor" type="text/plain"></script>#}
+        {#    </div>#}
+
+
+    {% endblock %}
 
 {% block scripts %}
 
-    <script type="text/javascript" charset="utf-8"
-            src="{{ url_for('static',filename='neditor/neditor.config.js') }}">
+    <script type = "text/javascript" charset = "utf-8"
+    src = "{{ url_for('static',filename='neditor/neditor.config.js') }}" >
     </script>
     <script type="text/javascript" charset="utf-8"
             src="{{ url_for('static',filename='neditor/neditor.all.min.js') }}"></script>
@@ -141,4 +146,5 @@
     {#            width: 100%;#}
     {#        }#}
     {#    </style>#}
+{% endblock %}
 {% endblock %}
